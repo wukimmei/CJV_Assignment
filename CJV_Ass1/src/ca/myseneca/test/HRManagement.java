@@ -133,16 +133,18 @@ public class HRManagement {
 		emp.setDepartment_id(20);		
 		
 //		count = DBAccessHelper.updateEmployee(emp);
-		
-		
+				
 		//perform batch job
 		String[] sql = { 
 		   "INSERT INTO employees VALUES(900, 'k', 'k', 'k@email.com', '888.999.7777', sysdate, 'PR_REP', 1000.0, 0.0, 201, 10)" 
-		  ,"INSERT INTO employees VALUES(901, 'j', 'j', 'j@email.com', '111.999.7777', sysdate, 'PR_REP', 2000.0, 0.0, 201, 10)" 
-				
+		  ,"INSERT INTO employees VALUES(901, 'j', 'j', 'j@email.com', '111.999.7777', sysdate, 'MK_MAN', 2000.0, 0.0, 100, 20)" 
+		  ,"UPDATE employees SET first_name = 'Jin', last_name = 'Kim' WHERE employee_id = 900"	
+		  ,"UPDATE employees SET first_name = 'Minsu', last_name = 'Kim' WHERE employee_id = 901"		
 		};
 		
-	
+		//boolean bRet = DBAccessHelper.batchUpdate(sql);
+		
+		
 		
 		
 		
