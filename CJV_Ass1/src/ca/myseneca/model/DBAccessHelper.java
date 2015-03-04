@@ -327,6 +327,8 @@ public class DBAccessHelper  {
 	      	      
 	      stmt = conn.createStatement();
 	      
+	      stmt.clearBatch();
+	      
 	      for(int i = 0; i < SQLs.length; i++) {
 	    	  stmt.addBatch(SQLs[i]);
 	      }
