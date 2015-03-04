@@ -212,6 +212,8 @@ public class DBAccessHelper  {
 			
 			int count = pstmt.executeUpdate();
 			
+			conn.commit();
+			
 			System.out.println(count + " Row Created with Employee ID :" + emp.getEmployee_id());
 
 		} catch (SQLException e) {
@@ -253,6 +255,8 @@ public class DBAccessHelper  {
 			
 			int count = pstmt.executeUpdate();
 			
+			conn.commit();
+			
 			System.out.println(count + " Row Updated with Employee ID :" + emp.getEmployee_id());
 			
 			return count;
@@ -274,15 +278,28 @@ public class DBAccessHelper  {
 		
 		PreparedStatement pstmt = null;
 		
-		String sql = "DELETE FROM employees WHERE employee_id = ?";
+		System.out.println("deleteEmployee--1--");
+		
+		String sql = "DELETE FROM employees WHERE employee_id = ? ";
+		
+		System.out.println("deleteEmployee--2--");
 		
 		try {
+			
 			pstmt = conn.prepareStatement(sql);
 			
+			System.out.println("deleteEmployee--3--");
+			
 			pstmt.setInt   (1, empid);
+
+			System.out.println("deleteEmployee--4--");
 			
 			int count = pstmt.executeUpdate();
+
+			System.out.println("deleteEmployee--5--");
 			
+			conn.commit();
+						
 			System.out.println(count + " Row Deleted with Employee ID :" + empid);
 			
 			return count;
@@ -298,7 +315,7 @@ public class DBAccessHelper  {
 	
 	}		
 	
-	public static boolean batchUpdate(String[] SQLs) throws SQLException {
+	public static boolean batchUpdate(String[] SQLs) {
 		
 		Connection conn = DBUtilities.getConnection();
 
@@ -307,6 +324,7 @@ public class DBAccessHelper  {
 	    try {
 
 	      conn.setAutoCommit(false);
+	      	      
 	      stmt = conn.createStatement();
 	      
 	      for(int i = 0; i < SQLs.length; i++) {
@@ -320,13 +338,16 @@ public class DBAccessHelper  {
 
 	    } catch (BatchUpdateException b) {
 	    	DBUtilities.printBatchUpdateException(b);
+			b.printStackTrace();
 	    	return false;
-	    } catch (SQLException ex) {
-	    	DBUtilities.printSQLException(ex);
+	    } catch (SQLException e) {
+			DBUtilities.printSQLException(e);
+			e.printStackTrace();
 	    	return false;
 	    } finally {
-	      if (stmt != null) { stmt.close(); }
-	      conn.setAutoCommit(true);
+			DBUtilities.closeStatement(stmt);
+			DBUtilities.closeConnection(conn);
+
 	    }
   }	
 	
