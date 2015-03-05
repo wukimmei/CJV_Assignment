@@ -86,23 +86,22 @@ public class HRManagement {
 			return;
 		
 		//show authorized user's information 
-//		emp = DBAccessHelper.getEmployeeByID(employee_id);
+		emp = DBAccessHelper.getEmployeeByID(employee_id);
 //		showEmployee(emp);
 			
 		//show all employees
 		ArrayList<Employee> empArrList = DBAccessHelper.getAllEmployees();
 //		showAllEmployee(empArrList);	
 		
-		//show all employees
+		//delete one Employee
+		emp = new Employee();
+		emp.setEmployee_id(800);
+		
+//		count = DBAccessHelper.deleteEmployee(emp.getEmployee_id());
+		
 		java.util.Date javaDate = new java.util.Date(); 
 		long javaTime = javaDate.getTime();
 		Date sqlDate = new Date(javaTime);
-		
-		//delete one Employee
-		emp = new Employee();
-		emp.setEmployee_id(900);
-		
-		count = DBAccessHelper.deleteEmployee(emp.getEmployee_id());
 		
 		//add new Employee
 		emp = new Employee();
@@ -143,10 +142,10 @@ public class HRManagement {
 				
 		//perform batch job
 		String[] sql = { 
-		   "INSERT INTO employees VALUES(900, 'k', 'k', 'k@email902.com', '888.999.7777', sysdate, 'PR_REP', 1000.0, 0.0, 201, 10)" 
-		  ,"INSERT INTO employees VALUES(901, 'j', 'j', 'j@email903.com', '111.999.7777', sysdate, 'MK_MAN', 2000.0, 0.0, 100, 20)" 
-		  ,"UPDATE employees SET first_name = 'Jin', last_name = 'Kim' WHERE employee_id = 900"	
-		  ,"UPDATE employees SET first_name = 'Min', last_name = 'Kim' WHERE employee_id = 901"		
+		   "INSERT INTO employees VALUES(900, 'k', 'k', 'kkk@email902.com', '888.999.7777', sysdate, 'PR_REP', 1000.0, 0.0, 201, 10)" 
+		  ,"INSERT INTO employees VALUES(901, 'j', 'j', 'jjj@email903.com', '111.999.7777', sysdate, 'MK_MAN', 2000.0, 0.0, 100, 20)" 
+		  ,"UPDATE employees SET first_name = 'Jin', last_name = 'Km' WHERE employee_id = 900"	
+		  ,"UPDATE employees SET first_name = 'Mn', last_name = 'Kim' WHERE employee_id = 901"		
 		};
 		
 		boolean bRet = DBAccessHelper.batchUpdate(sql);

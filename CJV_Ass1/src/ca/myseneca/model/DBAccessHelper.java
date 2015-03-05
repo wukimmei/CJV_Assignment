@@ -277,27 +277,17 @@ public class DBAccessHelper  {
 		Connection conn = DBUtilities.getConnection();
 		
 		PreparedStatement pstmt = null;
-		
-		System.out.println("deleteEmployee--1--");
-		
+	
 		String sql = "DELETE FROM employees WHERE employee_id = ? ";
-		
-		System.out.println("deleteEmployee--2--");
-		
+				
 		try {
 			
 			pstmt = conn.prepareStatement(sql);
-			
-			System.out.println("deleteEmployee--3--");
-			
-			pstmt.setInt   (1, empid);
 
-			System.out.println("deleteEmployee--4--");
-			
+			pstmt.setInt(1, empid);
+
 			int count = pstmt.executeUpdate();
 
-			System.out.println("deleteEmployee--5--");
-			
 			conn.commit();
 						
 			System.out.println(count + " Row Deleted with Employee ID :" + empid);
