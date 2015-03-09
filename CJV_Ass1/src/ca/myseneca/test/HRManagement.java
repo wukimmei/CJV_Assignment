@@ -31,7 +31,7 @@ public class HRManagement {
 		System.out.println("---------------------------------------------------------");		
 	}
 	
-	public static void showAllEmployee(ArrayList<Employee> empArrList) {
+	public static void showAllEmployee(ArrayList<Employee> empArrList, String str) {
 		
 		int count = empArrList.size();
 		
@@ -40,9 +40,9 @@ public class HRManagement {
 			return;
 		}
 		
-		System.out.println("---------------------------------------------------------");	
-		System.out.println("--------------showAllEmployee-------------------------------");	
-		System.out.println("---------------------------------------------------------");	
+		System.out.println("---------------------------------------------------------------------");	
+		System.out.println("--------------showEmployee By " + str + "----------------");	
+		System.out.println("---------------------------------------------------------------------");	
 		
 		for(int i=0; i<count; i++){
 			System.out.println("---------------------------------------------------------");
@@ -72,6 +72,7 @@ public class HRManagement {
 		String user = inputReader.next();
 		System.out.println("Please Input Password to authenticate.");
 		String password = inputReader.next();
+		inputReader.close();
 				
 		System.out.println("user :" + user);
 		System.out.println("password :" + password);
@@ -87,17 +88,22 @@ public class HRManagement {
 		
 		//show authorized user's information 
 		emp = DBAccessHelper.getEmployeeByID(employee_id);
-//		showEmployee(emp);
+		showEmployee(emp);
 			
 		//show all employees
 		ArrayList<Employee> empArrList = DBAccessHelper.getAllEmployees();
-//		showAllEmployee(empArrList);	
+		showAllEmployee(empArrList, "method - getAllEmployees");	
+		
+		//show all employees by departmenId
+		int depid = 50;
+		empArrList = DBAccessHelper.getEmployeesByDepartmentID(depid);
+		showAllEmployee(empArrList,  "method - getEmployeesByDepartmentID");	
 		
 		//delete one Employee
 		emp = new Employee();
 		emp.setEmployee_id(800);
 		
-//		count = DBAccessHelper.deleteEmployee(emp.getEmployee_id());
+		count = DBAccessHelper.deleteEmployee(emp.getEmployee_id());
 		
 		java.util.Date javaDate = new java.util.Date(); 
 		long javaTime = javaDate.getTime();
@@ -117,7 +123,7 @@ public class HRManagement {
 		emp.setManager_id(124);
 		emp.setDepartment_id(50);
 		
-//		DBAccessHelper.addNewEmployee(emp);
+		DBAccessHelper.addNewEmployee(emp);
 		
 		//modify exist Employee
 		emp.setEmployee_id(800);
@@ -132,7 +138,7 @@ public class HRManagement {
 		emp.setManager_id(100);
 		emp.setDepartment_id(20);		
 		
-//		count = DBAccessHelper.updateEmployee(emp);
+		count = DBAccessHelper.updateEmployee(emp);
 				
 		//delete one Employee
 		emp = new Employee();

@@ -95,7 +95,7 @@ public class DBAccessHelper  {
 		Connection conn = DBUtilities.getConnection();
 		
 		ArrayList<Employee> empList = new ArrayList<Employee>();
-		PreparedStatement pstmt = null;
+		Statement stmt = null;
 		ResultSet rs = null;
 		
 		String sql = "select employee_id, first_name, last_name, email, phone_number, hire_date, job_id, "
@@ -103,9 +103,9 @@ public class DBAccessHelper  {
 		
 		try {
 			
-			pstmt = conn.prepareStatement(sql);
+			stmt = conn.createStatement();
 			
-			rs = pstmt.executeQuery();
+			rs = stmt.executeQuery(sql);
 			
 			while (rs.next()) {
 				Employee emp = new Employee();
@@ -128,7 +128,7 @@ public class DBAccessHelper  {
 			DBUtilities.printSQLException(e);
 			e.printStackTrace();
 		} finally {
-			DBUtilities.closePreparedStatement(pstmt);
+			DBUtilities.closeStatement(stmt);
 			DBUtilities.closeConnection(conn);
 		}
 		
@@ -145,7 +145,7 @@ public class DBAccessHelper  {
 		ResultSet rs = null;
 		
 		String sql = "select employee_id, first_name, last_name, email, phone_number, hire_date, job_id, "
-				+ "          salary, commission_pct, manager_id, department_id from employees where department_id = ? ; " ;
+				+ "          salary, commission_pct, manager_id, department_id from employees where department_id = ? " ;
 		
 		try {
 			

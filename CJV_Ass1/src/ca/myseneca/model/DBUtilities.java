@@ -66,7 +66,7 @@ public class DBUtilities {
 	}
 
 	public static void printSQLException(SQLException ex) {
-		for (Throwable e : ex) {
+		for (Throwable e : ex) {     // FOR(int i=0; i<ex.length(); i++) e = ex(i)
 			if (e instanceof SQLException) {
 				e.printStackTrace(System.err);
 				System.err.println("SQLState: "
