@@ -82,6 +82,7 @@ public class RmiDBUtilClient {
 			String user = inputReader.next();
 			System.out.println("Please Input Password to authenticate.");
 			String password = inputReader.next();
+			inputReader.close();
 					
 			System.out.println("user :" + user);
 			System.out.println("password :" + password);

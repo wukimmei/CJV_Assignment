@@ -6,6 +6,11 @@ import ca.myseneca.model.Employee;
 
 public class RmiDBUtilImpl extends java.rmi.server.UnicastRemoteObject implements RmiDBUtilInterface  {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public RmiDBUtilImpl() throws java.rmi.RemoteException  {
 		// TODO Auto-generated constructor stub
 		super();
