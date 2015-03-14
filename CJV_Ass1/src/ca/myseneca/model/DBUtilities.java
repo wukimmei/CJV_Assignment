@@ -20,7 +20,7 @@ public class DBUtilities {
 
 	public static final String DB_file = "database.properties";
 	public static final Properties DB_PROPERTIES;
-
+	private static Connection _con=null;
 	// Initialize constant DB_PROPERTIES by reading the DB_file (= "database.properties") file.
 	// This approach allows you avoid to instantiate the DBUtilities and ensure the database properties 
 	// file will be load only once.
@@ -85,6 +85,7 @@ public class DBUtilities {
 
 	public static Connection getConnection()  {
 		
+		if(_con!=null) return _con;
 		Connection conn = null;
 
 		String driver = DB_PROPERTIES.getProperty("ORACLE_DB_DRIVER");
@@ -109,6 +110,7 @@ public class DBUtilities {
 		}
 
 		System.out.println("Connected to database");
+		_con=conn;
 		return conn;
 	}
 
@@ -167,6 +169,9 @@ public class DBUtilities {
 		}
 	}		
 	
+	public static void closeConnection(){
+		closeConnection(_con);
+	}
 	public static void closeConnection(Connection conn) {
 		System.out.println("Releasing all open resources ...\n");
 		try {

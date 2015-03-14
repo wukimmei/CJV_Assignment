@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.util.Scanner;
 
 import ca.myseneca.model.DBAccessHelper;
+import ca.myseneca.model.DBUtilities;
 import ca.myseneca.model.Employee;
 
 public class HRManagement {
@@ -158,6 +159,8 @@ public class HRManagement {
 		
 		if(bRet)		
 			System.out.println("Successful Batch Update");
+		
+		DBUtilities.closeConnection();
 		
 	}
 

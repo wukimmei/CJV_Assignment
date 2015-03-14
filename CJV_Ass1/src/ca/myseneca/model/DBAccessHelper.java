@@ -39,7 +39,7 @@ public class DBAccessHelper  {
 			e.printStackTrace();
 		} finally {
 			DBUtilities.closeCallableStatement(cstmt);
-			DBUtilities.closeConnection(conn);	
+			//DBUtilities.closeConnection(conn);	
 		}
 		
 		return employee_id;
@@ -83,7 +83,7 @@ public class DBAccessHelper  {
 		} finally {
 			DBUtilities.closeResultSet(orset);
 			DBUtilities.closeOracleCallableStatement(ostmt);
-			DBUtilities.closeConnection(conn);	
+			//DBUtilities.closeConnection(conn);	
 		}
 		
 		return emp;
@@ -129,7 +129,7 @@ public class DBAccessHelper  {
 			e.printStackTrace();
 		} finally {
 			DBUtilities.closeStatement(stmt);
-			DBUtilities.closeConnection(conn);
+			//DBUtilities.closeConnection(conn);
 		}
 		
 		return empList;
@@ -176,7 +176,7 @@ public class DBAccessHelper  {
 			e.printStackTrace();
 		} finally {
 			DBUtilities.closePreparedStatement(pstmt);
-			DBUtilities.closeConnection(conn);
+			//DBUtilities.closeConnection(conn);
 		}
 		
 		return empList;
@@ -221,7 +221,7 @@ public class DBAccessHelper  {
 			e.printStackTrace();
 		} finally {
 			DBUtilities.closePreparedStatement(pstmt);
-			DBUtilities.closeConnection(conn);
+			//DBUtilities.closeConnection(conn);
 		}
 	
 	}	
@@ -267,7 +267,7 @@ public class DBAccessHelper  {
 			return 0;
 		} finally {
 			DBUtilities.closePreparedStatement(pstmt);
-			DBUtilities.closeConnection(conn);
+			//DBUtilities.closeConnection(conn);
 		}
 	
 	}	
@@ -300,7 +300,7 @@ public class DBAccessHelper  {
 			return 0;
 		} finally {
 			DBUtilities.closePreparedStatement(pstmt);
-			DBUtilities.closeConnection(conn);
+			//DBUtilities.closeConnection(conn);
 		}
 	
 	}		
@@ -338,9 +338,13 @@ public class DBAccessHelper  {
 	    	return false;
 	    } finally {
 			DBUtilities.closeStatement(stmt);
-			DBUtilities.closeConnection(conn);
+			//DBUtilities.closeConnection(conn);
 
 	    }
-  }	
+  }
+
+	
+	
+	
 	
 }
